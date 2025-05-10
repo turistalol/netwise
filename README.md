@@ -13,12 +13,13 @@ Netwise Empresas é uma plataforma B2B desenvolvida para gerenciar e otimizar a 
 ## Estrutura do Projeto
 ```
 netwise-empresas/
-├── src/
-│   ├── app/
-│   ├── components/
-│   ├── lib/
-│   └── styles/
-├── public/
+├── app/            # Contém os layouts, páginas e componentes do App Router
+├── components/     # Componentes React reutilizáveis
+├── lib/            # Funções utilitárias, etc.
+├── public/         # Arquivos estáticos (imagens, fontes, etc.)
+├── Dockerfile
+├── docker-compose.yml
+├── package.json
 └── ...
 ```
 

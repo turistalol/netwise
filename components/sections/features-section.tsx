@@ -17,7 +17,17 @@ import {
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-const features = [
+// Definindo o tipo para um único feature
+type Feature = {
+  name: string;
+  description: string;
+  icon: React.ElementType; // Lucide icons são ElementType
+  color: string;
+  delay: number;
+  category: 'vps' | 'vpn';
+};
+
+const features: Feature[] = [
   {
     name: 'Servidores VPS de Alto Desempenho',
     description: 'CPUs de última geração, armazenamento SSD NVMe e alta largura de banda para máxima velocidade.',
@@ -148,7 +158,7 @@ function FeaturesGrid({
   features, 
   category 
 }: { 
-  features: typeof features, 
+  features: Feature[], 
   category: Category 
 }) {
   const filteredFeatures = category === 'all' 
@@ -172,7 +182,7 @@ function FeatureCard({
   feature, 
   index 
 }: { 
-  feature: typeof features[0], 
+  feature: Feature, 
   index: number 
 }) {
   const Icon = feature.icon;
