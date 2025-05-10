@@ -41,13 +41,7 @@ npm install
 yarn install
 ```
 
-3. Configure as variáveis de ambiente:
-Crie um arquivo `.env.local` na raiz do projeto com as seguintes variáveis:
-```env
-NEXT_PUBLIC_API_URL=sua_url_api
-```
-
-4. Inicie o servidor de desenvolvimento:
+3. Inicie o servidor de desenvolvimento:
 ```bash
 npm run dev
 # ou
