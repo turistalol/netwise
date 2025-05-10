@@ -1,0 +1,26 @@
+  netwise-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: "netwise-empresas-app"
+    restart: unless-stopped
+    networks:
+      - web
+    expose:
+      - "3000" # Porta exposta pelo Next.js dentro do container
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.netwise-app.rule=Host(`netwise.f5.marketing`)"
+      - "traefik.http.routers.netwise-app.entrypoints=websecure"
+      - "traefik.http.routers.netwise-app.tls.certresolver=cloudflare"
+      - "traefik.http.services.netwise-app.loadbalancer.server.port=3000"
+      # Middleware para redirecionar HTTP para HTTPS (opcional, mas recomendado)
+      - "traefik.http.routers.netwise-app-http.rule=Host(`netwise.f5.marketing`)"
+      - "traefik.http.routers.netwise-app-http.entrypoints=web"
+      - "traefik.http.routers.netwise-app-http.middlewares=redirect-to-https"
+      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
+      - "traefik.http.middlewares.redirect-to-https.redirectscheme.permanent=true"
+
+networks:
+  web:
+    external: true # Indica que a rede 'web' já existe e é gerenciada externamente 
