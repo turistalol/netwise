@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   netwise-app:
     build:
@@ -10,20 +8,32 @@ services:
     networks:
       - web
     expose:
-      - "3000" # Porta exposta pelo Next.js dentro do container
+      - "3000"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.netwise-app.rule=Host(`netwise.f5.marketing`)"
-      - "traefik.http.routers.netwise-app.entrypoints=websecure"
-      - "traefik.http.routers.netwise-app.tls.certresolver=cloudflare"
-      - "traefik.http.services.netwise-app.loadbalancer.server.port=3000"
-      # Middleware para redirecionar HTTP para HTTPS (opcional, mas recomendado)
+      - "traefik.docker.network=web"
+      
+      # Router para HTTPS
+      - "traefik.http.routers.netwise-app-secure.rule=Host(`netwise.f5.marketing`)"
+      - "traefik.http.routers.netwise-app-secure.entrypoints=websecure"
+      - "traefik.http.routers.netwise-app-secure.service=netwise-app-service"
+      - "traefik.http.routers.netwise-app-secure.tls=true"
+      - "traefik.http.routers.netwise-app-secure.tls.certresolver=cloudflare" # Verifique este nome!
+      - "traefik.http.routers.netwise-app-secure.tls.domains[0].main=netwise.f5.marketing"
+      
+      # Router para HTTP -> HTTPS redirect
       - "traefik.http.routers.netwise-app-http.rule=Host(`netwise.f5.marketing`)"
       - "traefik.http.routers.netwise-app-http.entrypoints=web"
-      - "traefik.http.routers.netwise-app-http.middlewares=redirect-to-https"
+      - "traefik.http.routers.netwise-app-http.middlewares=redirect-to-https@docker"
+      
+      # Serviço
+      - "traefik.http.services.netwise-app-service.loadbalancer.server.port=3000"
+      
+      # Middleware para HTTP -> HTTPS (Definido globalmente ou aqui se necessário)
+      # Se já estiver definido no seu Traefik global, pode não precisar repetir.
       - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
       - "traefik.http.middlewares.redirect-to-https.redirectscheme.permanent=true"
 
 networks:
   web:
-    external: true # Indica que a rede 'web' já existe e é gerenciada externamente 
+    external: true 

@@ -1,45 +1,54 @@
-# Estágio 1: Build
-FROM node:18-alpine AS builder
+# Dockerfile
 
-# Define o diretório de trabalho
+# ---- Base ----
+# Define a versão do Node.js a ser usada
+ARG NODE_VERSION=18
+FROM node:${NODE_VERSION}-alpine AS base
+
+# Define o diretório de trabalho globalmente para os estágios que herdam
 WORKDIR /app
 
-# Copia os arquivos de manifesto de pacote e instala dependências
+# ---- Dependencies ----
+# Copia os arquivos de manifesto e instala SOMENTE as dependências de PRODUÇÃO.
+# O objetivo é ter uma camada separada para dependências que mudam menos frequentemente.
+FROM base AS deps
 COPY package.json yarn.lock* ./
-# Descomente a linha abaixo e comente a acima se você usar npm em vez de yarn
-# COPY package.json package-lock.json* ./
+# Para `output: standalone`, o `next build` já copia as dependências necessárias.
+# A instalação de dependências de produção aqui pode ser redundante ou até causar problemas
+# se o `standalone` não encontrar exatamente o que espera.
+# Vamos confiar que o builder cuidará das dependências corretas para o standalone.
+# RUN yarn install --production --frozen-lockfile
 
+# ---- Builder ----
+# Este estágio instala TODAS as dependências (incluindo devDependencies)
+# e depois constrói a aplicação.
+FROM base AS builder
+# Copia os arquivos de manifesto primeiro
+COPY package.json yarn.lock* ./
+# Instala todas as dependências necessárias para o build
 RUN yarn install --frozen-lockfile
-# Descomente a linha abaixo e comente a acima se você usar npm em vez de yarn
-# RUN npm ci
 
 # Copia o restante do código da aplicação
 COPY . .
 
-# Constrói a aplicação para produção
+# Executa o build do Next.js. Com `output: 'standalone'` no next.config.js,
+# isso criará a pasta .next/standalone.
 RUN yarn build
-# Descomente a linha abaixo e comente a acima se você usar npm em vez de yarn
-# RUN npm run build
 
-# Estágio 2: Produção
-FROM node:18-alpine
+# ---- Runner ----
+# Este é o estágio final que cria a imagem de produção.
+# Ele copia apenas os artefatos necessários do estágio builder.
+FROM base AS runner 
+ENV NODE_ENV production
 
-WORKDIR /app
-
-# Define o ambiente para produção
-ENV NODE_ENV=production
-
-# Copia os artefatos de build do estágio anterior
-COPY --from=builder /app/.next ./.next
+# Copia a saída standalone do estágio builder
+COPY --from=builder /app/.next/standalone ./
+# Copia a pasta public do estágio builder
 COPY --from=builder /app/public ./public
-COPY --from=builder /app/package.json ./package.json
-# Se você tiver um server.js customizado, copie-o também
-# COPY --from=builder /app/server.js ./server.js
+# Copia a pasta .next/static do estágio builder, que contém os assets estáticos otimizados.
+COPY --from=builder /app/.next/static ./.next/static
 
-# Expõe a porta que o Next.js usa
 EXPOSE 3000
 
-# Comando para iniciar a aplicação
-CMD ["yarn", "start"]
-# Descomente a linha abaixo e comente a acima se você usar npm em vez de yarn
-# CMD ["npm", "start"] 
+# O comando para iniciar a aplicação quando `output: 'standalone'` é usado.
+CMD ["node", "server.js"] 
