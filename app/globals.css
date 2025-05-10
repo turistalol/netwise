@@ -1,0 +1,222 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+@layer base {
+  /* Adicione estas classes ao seu global.css */
+
+.glass-effect {
+  /* Usando suas variáveis CSS para consistência */
+  background-color: hsla(var(--card), 0.7); /* Cor do card com transparência */
+  backdrop-filter: blur(12px) saturate(150%);
+  border: 1px solid hsla(var(--border), 0.5); /* Borda sutil com transparência */
+}
+
+.animated-border {
+  position: relative;
+  padding: 3px; /* Espaço para a "trilha" da borda animada. Ajuste conforme necessário. */
+  overflow: hidden; /* Para conter os pseudo-elementos */
+  z-index: 0; /* Para garantir que o conteúdo interno com background fique por cima */
+}
+
+.animated-border::before,
+.animated-border::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%; /* Grande o suficiente para cobrir ao rotacionar */
+  height: 200%;
+  z-index: -1; /* Para ficar atrás do conteúdo do card */
+  transform-origin: 0 0;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    hsl(var(--accent)) 20deg,
+    hsl(var(--accent)) 40deg,
+    transparent 60deg,
+    transparent 300deg,
+    hsl(var(--accent)) 320deg,
+    hsl(var(--accent)) 340deg,
+    transparent 360deg
+  );
+  animation: rotateBorder 4s linear infinite; /* Ajuste a duração conforme desejar */
+}
+
+.animated-border::after {
+  /* Um segundo gradiente com delay para um efeito mais dinâmico (opcional) */
+  background: conic-gradient(
+    from 180deg,
+    transparent 0deg,
+    hsl(var(--primary)) 20deg,
+    hsl(var(--primary)) 40deg,
+    transparent 60deg, 
+    transparent 300deg,
+    hsl(var(--primary)) 320deg,
+    hsl(var(--primary)) 340deg,
+    transparent 360deg
+  );
+  animation-delay: -2s; /* Metade da duração da animação principal */
+}
+
+@keyframes rotateBorder {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+  :root {
+    --background: 206 47% 5%;
+    --foreground: 0 0% 100%;
+    
+    --card: 206 47% 8%;
+    --card-foreground: 0 0% 100%;
+    
+    --popover: 206 47% 8%;
+    --popover-foreground: 0 0% 100%;
+    
+    --primary: 205 100% 22%;
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 210 100% 39%;
+    --secondary-foreground: 0 0% 100%;
+    
+    --accent: 27 100% 60%;
+    --accent-foreground: 0 0% 0%;
+    
+    --muted: 191 8% 65%;
+    --muted-foreground: 191 8% 65%;
+    
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    
+    --border: 206 47% 12%;
+    --input: 206 47% 12%;
+    --ring: 205 100% 22%;
+    
+    --icon: 187 100% 50%;
+    
+    --chart-1: 205 100% 22%;
+    --chart-2: 210 100% 39%;
+    --chart-3: 27 100% 60%;
+    --chart-4: 191 8% 65%;
+    --chart-5: 206 47% 30%;
+    
+    --radius: 0.5rem;
+  }
+
+  * {
+    @apply border-border;
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-background text-foreground font-sans;
+    background-image: radial-gradient(
+      circle at top center,
+      hsl(206 47% 10%),
+      hsl(var(--background)) 70%
+    );
+    background-attachment: fixed;
+  }
+}
+
+.font-sans {
+  font-family: var(--font-nexa), ui-sans-serif, system-ui, sans-serif;
+}
+
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-accent to-primary;
+}
+
+.card-glow {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(158, 172, 174, 0.1);
+}
+
+.card-glow::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(158, 172, 174, 0.2),
+    transparent
+  );
+  transition: 0.5s;
+  z-index: 0;
+}
+
+.card-glow:hover::before {
+  left: 100%;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 5px rgba(0, 70, 113, 0.2), 0 0 10px rgba(0, 102, 197, 0.2);
+  }
+  to {
+    box-shadow: 0 0 10px rgba(0, 70, 113, 0.3), 0 0 20px rgba(0, 102, 197, 0.3);
+  }
+}
+
+.grid-pattern {
+  background-image: 
+    linear-gradient(rgba(158, 172, 174, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(158, 172, 174, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
