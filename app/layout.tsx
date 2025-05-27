@@ -32,16 +32,16 @@ const nexa = localFont({
 });
 
 export const metadata: Metadata = {
-  title: 'Netwise Empresas | Soluções de VPS e VPN de Alta Performance',
-  description: 'Soluções empresariais de VPS e VPN com alto desempenho, segurança avançada e suporte técnico 24/7 para sua empresa.',
-  keywords: 'VPS, VPN, servidores virtuais, redes privadas, cloud computing, hospedagem, segurança de dados',
+  title: 'Netwise Empresas | Soluções de Cloud e Virtual Machine de Alta Performance',
+  description: 'Soluções empresariais de Cloud e Virtual Machine com alto desempenho, segurança avançada e suporte técnico 24/7 para sua empresa.',
+  keywords: 'Cloud, Virtual Machine, servidores virtuais, redes privadas, cloud computing, hospedagem, segurança de dados',
   authors: [{ name: 'Netwise Empresas' }],
   icons: {
     icon: '/images/logo.webp',
   },
   openGraph: {
-    title: 'Netwise Empresas | Soluções de VPS e VPN de Alta Performance',
-    description: 'Soluções empresariais de VPS e VPN com alto desempenho, segurança avançada e suporte técnico 24/7 para sua empresa.',
+    title: 'Netwise Empresas | Soluções de Cloud e Virtual Machine de Alta Performance',
+    description: 'Soluções empresariais de Cloud e Virtual Machine com alto desempenho, segurança avançada e suporte técnico 24/7 para sua empresa.',
     url: 'https://netwise.com.br',
     siteName: 'Netwise Empresas',
     locale: 'pt_BR',

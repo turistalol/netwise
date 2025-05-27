@@ -11,6 +11,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import Image from 'next/image'
 
 const navigation = [
   { name: 'Início', href: '/servicos' },
@@ -20,9 +21,8 @@ const navigation = [
 ]
 
 const solutions = [
-  { name: 'VPS Empresarial', href: '/' },
-  { name: 'VPN Dedicada', href: '/' },
-  { name: 'Backup', href: '/backup' },
+  { name: 'Cloud e Virtual Machine', href: '/' },
+  { name: 'Backup em Nuvem', href: '/backup' },
 
 ]
 
@@ -52,10 +52,12 @@ export function Header() {
         <div className="flex lg:flex-1">
           <Link href="/servicos" className="-m-1.5 p-1.5">
             <span className="sr-only">Netwise Empresas</span>
-            <img 
+            <Image 
               className="h-20 w-auto"
               src="/images/logo.webp"
               alt="Netwise Empresas Logo"
+              width={100}
+              height={100}
             />
           </Link>
         </div>
@@ -120,10 +122,12 @@ export function Header() {
             <div className="flex items-center justify-between">
               <Link href="/servicos" className="-m-1.5 p-1.5">
                 <span className="sr-only">Netwise Empresas</span>
-                <img 
+                <Image 
                   className="h-20 w-auto"
                   src="/images/logo.webp"
                   alt="Netwise Empresas Logo"
+                  width={100}
+                  height={100}
                 />
               </Link>
               <button
