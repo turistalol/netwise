@@ -24,8 +24,8 @@ export default function BackupPage() {
       {/* <BackupBenefits /> */}
       <SecuritySection />
       <HowItWorksSection />
-      <BackupPricing />
       <TestimonialsSlider testimonialsData={testimonialsData} />
+      <BackupPricing />
       <BackupIntegrations />
       <BackupContactSection />
       <Footer />

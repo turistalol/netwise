@@ -19,19 +19,19 @@ const securityFeatureGroups = [
     title: "Segurança de Dados",
     features: [
       "Criptografia AES-256 em trânsito e em repouso",
-      "Autenticação multi-fator para acesso",
+      "Autenticação para acesso",
       "Isolamento completo dos dados por cliente",
-      "Chaves de criptografia gerenciadas pelo cliente",
+      "Chaves de criptografia gerenciadas",
       "Verificação de integridade automatizada",
-      "Proteção contra ransomware integrada"
+      "Proteções integradas"
     ]
   },
   {
     title: "Infraestrutura Confiável",
     features: [
-      "Data centers Tier III e Tier IV",
+      "Data centers Tier III",
       "Redundância geográfica em múltiplas regiões",
-      "Uptime garantido de 99.999%",
+      "Uptime garantido de 99.982%",
       "Monitoramento 24/7 por equipe especializada",
       "Testes de recuperação automáticos",
       "Backups imutáveis contra modificações"
@@ -187,7 +187,7 @@ export function SecuritySection() {
                     ))}
                   </div>
                   <div className="mt-4 text-sm text-muted-foreground">
-                    Nossa infraestrutura e processos são regularmente auditados por entidades independentes para garantir os mais altos padrões de segurança e privacidade.
+                    Ao contratar nossa infraestrutura, sua empresa passará a ter os certificados de segurança necessários para operar no mercado.
                   </div>
                 </CardContent>
               </Card>

@@ -103,7 +103,7 @@ export function HeroSection() {
                 Infraestrutura de <span className="text-accent">alta performance</span> para sua empresa
               </h1>
               <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0">
-                Soluções de VPS e VPN seguras, rápidas e confiáveis para impulsionar
+                Soluções de Cloud e Virtual Machine, que garantem disponibilidade e continuidade para impulsionar
                 o crescimento da sua empresa com tecnologia de ponta.
               </p>
             </motion.div>
@@ -145,7 +145,7 @@ export function HeroSection() {
                   <Server className="h-6 w-6 text-icon" />
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  99.9% de uptime garantido
+                99.982% de uptime
                 </p>
               </div>
               <div className="flex items-center justify-center sm:justify-start">
@@ -153,7 +153,7 @@ export function HeroSection() {
                   <Zap className="h-6 w-6 text-icon" />
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  Alta velocidade e desempenho
+                  Disponibilidade e Continuidade
                 </p>
               </div>
               <div className="flex items-center justify-center sm:justify-start">
