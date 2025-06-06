@@ -36,7 +36,7 @@ const features: Feature[] = [
   // Main Feature (Left - Large)
   {
     name: 'Máquinas Virtuais (VM) de Alta Performance',
-    description: 'Processadores Intel Xeon de última geração com até 64 vCPUs dedicados, garantindo máxima performance para aplicações críticas que demandam processamento intensivo e baixa latência.',
+    description: 'Processadores Intel Xeon Classe GOLD com vCPUs dedicados escaláveis conforme sua necessidade, garantindo máxima performance para aplicações críticas que demandam processamento intensivo e baixa latência.',
     icon: Cpu,
     color: 'from-primary via-secondary to-accent',
     delay: 0.1,

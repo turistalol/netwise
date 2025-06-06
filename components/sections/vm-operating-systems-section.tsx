@@ -31,7 +31,7 @@ const operatingSystems = [
   {
     name: "Windows Server 2022",
     version: "21H2",
-    description: "Última versão do Windows Server com Hyper-V",
+    description: "Última versão do Windows Server com suporte empresarial",
     icon: "🪟",
     color: "from-blue-500 to-blue-600",
     category: "windows",

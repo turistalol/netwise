@@ -7,82 +7,100 @@ import { PricingCard } from '@/components/ui/pricing-card'
 
 const plans = [
   {
-    name: 'Performance',
-    id: 'performance',
-    description: 'Solução robusta para aplicações críticas',
+    name: 'Starter',
+    id: 'small',
+    description: 'Plano ideal para começar',
     price: "A consultar",
     features: [
-      '16 vCPUs Intel Xeon',
-      '64GB RAM DDR4',
-      '1TB SSD NVMe',
-      '10TB de Tráfego',
-      'Backup Diário Automatizado',
-      'Painel de Gestão Avançado',
-      'Monitoramento 24/7',
-      'IP Dedicado',
-      'Firewall Corporativo',
-      'Suporte por Email e Chat',
-      'SLA 99.9% de Uptime',
+      '1 vCPU',
+      '1GB RAM',
+      '40GB SSD',
+      '1TB de Tráfego',
+      'Painel de Controle',
+      'Backup Semanal',
+      'Suporte por Email',
+      'SLA 99.5% de Uptime',
     ],
     missingFeatures: [
-      'Suporte Telefônico 24/7',
-      'Compliance Especializado',
-      'Disaster Recovery',
+      'IP Dedicado',
+      'Suporte 24/7',
+      'Backup Diário',
     ],
-    buttonText: "Solicitar proposta"
+    buttonText: "Contratar agora"
   },
   {
-    name: 'Enterprise',
-    id: 'enterprise',
-    description: 'Infraestrutura de alta disponibilidade para grandes empresas',
+    name: 'Growth',
+    id: 'medium',
+    description: 'Plano ideal para crescer',
     price: "A consultar",
     popular: true,
     features: [
-      '32 vCPUs Intel Xeon',
-      '128GB RAM DDR4',
-      '2TB SSD NVMe',
-      '25TB de Tráfego',
-      'Backup Contínuo com Versionamento',
-      'Painel de Gestão Enterprise',
-      'Monitoramento Proativo 24/7',
-      'Multiple IPs Dedicados',
-      'Firewall Avançado + WAF',
-      'Suporte Prioritário 24/7',
-      'Load Balancer Incluso',
-      'SLA 99.95% de Uptime',
+      '2 vCPUs',
+      '8GB RAM',
+      '80GB SSD',
+      '3TB de Tráfego',
+      'Painel de Controle Avançado',
+      'Backup Diário',
+      'Suporte por Email e Chat',
+      'SLA 99.7% de Uptime',
     ],
     missingFeatures: [
-      'Arquiteto de Soluções Dedicado',
-      'Compliance Certificado',
+      'IP Dedicado',
+      'Suporte Telefônico',
+      'Firewall Avançado',
     ],
-    buttonText: "Solicitar proposta"
+    buttonText: "Contratar agora"
   },
   {
-    name: 'Mission Critical',
-    id: 'mission-critical',
-    description: 'Máxima performance e disponibilidade para operações críticas',
+    name: 'Enterprise',
+    id: 'large',
+    description: 'Plano ideal de alta performance',
     price: "A consultar",
     features: [
-      '64 vCPUs Intel Xeon',
-      '256GB RAM DDR4',
-      '4TB SSD NVMe',
-      'Tráfego Ilimitado',
-      'Backup Contínuo Multi-Regional',
-      'Painel Corporativo Personalizado',
-      'Monitoramento Dedicado 24/7',
-      'Pool de IPs Dedicados',
-      'Security Suite Completa',
-      'Suporte Dedicado 24/7',
-      'Load Balancer + Auto Scaling',
-      'Disaster Recovery Automático',
-      'Compliance LGPD/SOC2/ISO27001',
-      'Arquiteto de Soluções Dedicado',
-      'SLA 99.99% de Uptime',
+      '4 vCPUs',
+      '16GB RAM',
+      '160GB SSD',
+      '5TB de Tráfego',
+      'Painel de Gestão Completo',
+      'Backup Diário Automatizado',
+      'IP Dedicado',
+      'Suporte 24/7',
+      'Firewall Básico',
+      'SLA 99.8% de Uptime',
     ],
-    missingFeatures: [],
-    buttonText: "Solicitar proposta"
+    missingFeatures: [
+      'Load Balancer',
+      'Firewall Avançado',
+      'Compliance',
+    ],
+    buttonText: "Contratar agora"
+  },
+  {
+    name: 'Enterprise Plus',
+    id: 'xlarge',
+    description: 'Plano ideal para empresas que precisam de disponibilidade e continuidade',
+    price: "A consultar",
+    features: [
+      '8 vCPUs',
+      '32GB RAM',
+      '320GB SSD',
+      '10TB de Tráfego',
+      'Painel Enterprise',
+      'Backup Contínuo',
+      'IP Dedicado',
+      'Suporte Prioritário 24/7',
+      'Firewall Avançado',
+      'Monitoramento 24/7',
+      'SLA 99.9% de Uptime',
+    ],
+    missingFeatures: [
+      'Disaster Recovery',
+      'Compliance Certificado',
+    ],
+    buttonText: "Contratar agora"
   },
 ]
+
 
 export function PricingSection() {
   return (
@@ -103,7 +121,7 @@ export function PricingSection() {
           </p>
         </div>
         
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-4 gap-4">
           {plans.map((plan, index) => (
             <PricingCard
               key={plan.id}
